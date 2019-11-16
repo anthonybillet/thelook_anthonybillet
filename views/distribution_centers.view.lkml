@@ -1,6 +1,6 @@
 view: distribution_centers {
   sql_table_name: public.distribution_centers ;;
-  drill_fields: [id]
+  drill_fields: [name, latitude, latitude]
 
   dimension: id {
     primary_key: yes
@@ -25,6 +25,5 @@ view: distribution_centers {
 
   measure: count {
     type: count
-    drill_fields: [id, name]
   }
 }

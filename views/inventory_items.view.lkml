@@ -1,6 +1,6 @@
 view: inventory_items {
   sql_table_name: public.inventory_items ;;
-  drill_fields: [id]
+  drill_fields: [id,created_date,sold_date,cost]
 
   dimension: id {
     primary_key: yes
@@ -94,20 +94,17 @@ view: inventory_items {
       }
       else: "High"
     }
-    drill_fields: [id, product_name]
   }
 
   measure: retail_price_one_of_each_item{
     type: sum_distinct
     sql_distinct_key: ${product_id} ;;
     sql: ${product_retail_price} ;;
-    drill_fields: [id, product_name]
   }
 
   measure: retail_price_entire_inventory{
     type: sum
     sql: ${product_retail_price} ;;
-    drill_fields: [id, product_name]
   }
 
   measure: cost_mens_department{
@@ -117,7 +114,6 @@ view: inventory_items {
       field: product_department
       value: "Men"
     }
-    drill_fields: [id, product_name, product_department, cost]
   }
 
   measure: cost_womens_department{
@@ -127,24 +123,20 @@ view: inventory_items {
       field: product_department
       value: "Women"
     }
-    drill_fields: [id, product_name, product_department, cost]
   }
 
   dimension: retail_profit{
     type: number
     sql: ${product_retail_price} - ${cost} ;;
-    drill_fields: [id, product_name, product_retail_price, cost]
   }
 
 
   measure: total_cost{
     type: sum
     sql: ${cost} ;;
-    drill_fields: [id, product_name, cost]
   }
 
   measure: count {
     type: count
-    drill_fields: [id, product_name]
   }
 }

@@ -51,6 +51,6 @@ view: pit_stops {
 
   measure: count {
     type: count
-    drill_fields: []
+    drill_fields: [car_id,number_of_pit_crew_members]
   }
 }

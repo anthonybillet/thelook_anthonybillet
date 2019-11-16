@@ -1,6 +1,6 @@
 view: products {
   sql_table_name: public.products ;;
-
+  drill_fields: [brand,category,department]
   dimension: id {
     primary_key: yes
     type:  number
@@ -49,7 +49,6 @@ view: products {
 
   measure: count {
     type: count
-    drill_fields: [detail*]
   }
 
   set: detail {

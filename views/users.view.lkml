@@ -1,5 +1,6 @@
 view: users {
   sql_table_name: public.users ;;
+  drill_fields: [age,first_name,last_name,city,state,country,email,traffic_source]
 
   dimension: id {
     primary_key: yes
@@ -109,18 +110,6 @@ dimension_group: created_at {
 
   measure: count {
     type: count
-    drill_fields: [detail*]
-  }
-
-  set: detail {
-    fields: [
-      id,
-      users.id,
-      users.first_name,
-      users.last_name,
-      inventory_items.id,
-      inventory_items.product_name
-    ]
   }
 
 }

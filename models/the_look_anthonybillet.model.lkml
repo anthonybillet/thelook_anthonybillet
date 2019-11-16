@@ -42,9 +42,17 @@ explore: order_items {
     sql_on: ${inventory_items.product_id} = ${products.id};;
   }
 
+  join: products_sale_price_same_as_retail  {
+    from: products
+    type: inner
+    relationship: many_to_one
+    sql_on: ${order_items.sale_price} = ${products.retail_price} ;;
+  }
+
 }
 
 explore: inventory_items {
+  persist_with: the_look_anthonybillet_4hr_cahce
   label: "Levi's Inventory, Products, and Distribution"
   view_label: "Levi's Inventory"
   sql_always_where: ${product_brand} = 'Levi''s';;

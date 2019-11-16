@@ -1,6 +1,6 @@
 view: order_items {
   sql_table_name: public.order_items ;;
-  drill_fields: [id]
+  drill_fields: [created_date,delivered_date,shipped_date,returned_date,sale_price,status]
 
   dimension: id {
     primary_key: yes
@@ -108,7 +108,6 @@ view: order_items {
 
   measure: count {
     type: count
-    drill_fields: [detail*]
   }
 
   measure: cheapest_sale {
@@ -116,7 +115,6 @@ view: order_items {
     description: "Finds the cheapest purchase"
     type: min
     sql: ${sale_price} ;;
-    drill_fields: [detail*]
   }
 
   measure: most_expensive_sale {
@@ -124,7 +122,6 @@ view: order_items {
     description: "Finds the most expensive purchase"
     type: max
     sql: ${sale_price} ;;
-    drill_fields: [detail*]
   }
 
   measure: average_sale {
@@ -132,7 +129,6 @@ view: order_items {
     description: "The average dollar amount earned across all sales"
     type: average
     sql: ${sale_price} ;;
-    drill_fields: [detail*]
   }
 
   measure: total_revenue {
@@ -140,7 +136,6 @@ view: order_items {
     description: "Sums up every dollar earned from each sale"
     type: sum
     sql: ${sale_price} ;;
-    drill_fields: [detail*]
   }
 
   measure: total_profit {
@@ -148,19 +143,5 @@ view: order_items {
     description: "Calculates company profit as a function of total revenue less total cost"
     type: number
     sql: ${total_revenue} - ${inventory_items.total_cost} ;;
-    drill_fields: [detail*]
-  }
-
-
-  # ----- Sets of fields for drilling ------
-  set: detail {
-    fields: [
-      id,
-      users.id,
-      users.first_name,
-      users.last_name,
-      inventory_items.id,
-      inventory_items.product_name
-    ]
   }
 }
