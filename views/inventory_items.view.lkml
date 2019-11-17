@@ -125,9 +125,9 @@ view: inventory_items {
     }
   }
 
-  dimension: retail_profit{
+  dimension: retail_margin{
     type: number
-    sql: ${product_retail_price} - ${cost} ;;
+    sql: (${product_retail_price} - ${cost})/${product_retail_price} ;;
   }
 
 
