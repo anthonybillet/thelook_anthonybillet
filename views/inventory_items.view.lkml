@@ -128,6 +128,7 @@ view: inventory_items {
   dimension: retail_margin{
     type: number
     sql: (${product_retail_price} - ${cost})/${product_retail_price} ;;
+    value_format_name: percent_1
   }
 
 
