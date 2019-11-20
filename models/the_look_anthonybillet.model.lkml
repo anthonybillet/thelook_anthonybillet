@@ -2,7 +2,7 @@ connection: "thelook_events"
 
 # include all the views
 include: "/views/**/*.view"
-
+include: "/*.dashboard"
 datagroup: the_look_anthonybillet_default_datagroup {
   sql_trigger: SELECT MAX(id) FROM etl_log;;
   max_cache_age: "1 hour"
@@ -56,7 +56,7 @@ explore: inventory_items {
   label: "Levi's Inventory, Products, and Distribution"
   view_label: "Levi's Inventory"
   sql_always_where: ${product_brand} = 'Levi''s';;
-  fields: [ALL_FIELDS*, -products.brand, product_brand]
+  fields: [ALL_FIELDS*, -products.brand, -inventory_items.product_brand]
 
   join: products {
     view_label: "Levi's Products"

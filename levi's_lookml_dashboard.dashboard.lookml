@@ -1,5 +1,5 @@
 - dashboard: levis_inventory_products_distribution_lookML
-  title: Levi's Inventory, Products, Distribution
+  title: Levi's Inventory, Products, Distribution LookML
   layout: newspaper
   elements:
   - title: Stock By Category
