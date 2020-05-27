@@ -96,6 +96,7 @@ dimension_group: created_at {
   dimension: state {
     type:  string
     sql: ${TABLE}.state ;;
+    suggest_dimension:suggest_states_USA.state
   }
 
   dimension: traffic_source {

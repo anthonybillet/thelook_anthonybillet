@@ -1,7 +1,7 @@
 connection: "thelook_events"
 
 # include all the views
-include: "/views/**/*.view"
+include: "/**/**/*.view"
 include: "/*.dashboard"
 datagroup: the_look_anthonybillet_default_datagroup {
   sql_trigger: SELECT MAX(id) FROM etl_log;;
@@ -48,6 +48,19 @@ explore: order_items {
     relationship: many_to_one
     sql_on: ${order_items.sale_price} = ${products.retail_price} ;;
   }
+
+  join: suggest_states_USA {
+    sql_on: ${suggest_states_USA.state} = ${users.state} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: user_facts {
+    sql_on: ${order_items.user_id} = ${user_facts.users_id} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
 
 }
 

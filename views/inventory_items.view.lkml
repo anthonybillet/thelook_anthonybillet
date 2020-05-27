@@ -2,6 +2,36 @@ view: inventory_items {
   sql_table_name: public.inventory_items ;;
   drill_fields: [id,created_date,sold_date,cost]
 
+  parameter: dynamic_operator {
+    type: unquoted
+    allowed_value: {
+      value: "Is in the range"
+    }
+    allowed_value: {
+      value: "Is in the past"
+    }
+  }
+
+  parameter: time_range {
+    type: unquoted
+  }
+
+  dimension: created_at_filter_only {
+    type: string
+    sql: CASE
+            WHEN {% parameter dynamic_operator %} = 'Is in the past'
+            THEN (((inventory_items.created_at) >= ((convert_timezone('America/Los_Angeles',
+                  'UTC', dateadd(day, -{% parameter time_range %} + 1, date_trunc('day', convert_timezone('UTC',
+                  'America/Los_Angeles', getdate())) )))) AND (inventory_items.created_at) < ((
+                  convert_timezone('America/Los_Angeles', 'UTC', dateadd(day, {% parameter time_range %}, dateadd(day, -{% parameter time_range %} + 1,
+                  date_trunc('day', convert_timezone('UTC', 'America/Los_Angeles', getdate())) ) )
+                  )))))
+            ELSE NULL
+            END
+            ;;
+
+  }
+
   dimension: id {
     primary_key: yes
     type: number
