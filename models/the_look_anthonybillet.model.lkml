@@ -27,6 +27,10 @@ persist_with: the_look_anthonybillet_default_datagroup
 
 explore: order_items {
   persist_with: the_look_anthonybillet_4hr_cahce
+  access_filter: {
+    field: products.brand
+    user_attribute: brand
+  }
 
   join: users {
 #     required_access_grants: [banana]
