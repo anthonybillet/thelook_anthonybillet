@@ -8,6 +8,19 @@ view: users {
     sql: ${TABLE}.id ;;
   }
 
+  dimension: reference_field {
+    type: string
+    sql: 'Banana' ;;
+  }
+
+  dimension: label_test {
+    label: "
+    {{ users.reference_field._value }}
+    "
+    type: string
+    sql: 'does not matter' ;;
+  }
+
   dimension: age {
     type:  number
     sql: ${TABLE}.age ;;
@@ -37,6 +50,7 @@ view: users {
       }
       else: "Senior"
     }
+    drill_fields: [age, city, country, name]
   }
 
   dimension: city {
@@ -70,7 +84,7 @@ dimension_group: created_at {
 
   dimension: first_name {
     type:  string
-    sql: ${TABLE}.firstname ;;
+    sql: ${TABLE}.first_name ;;
   }
 
   dimension: gender {
@@ -81,6 +95,11 @@ dimension_group: created_at {
   dimension: last_name {
     type:  string
     sql: ${TABLE}.last_name ;;
+  }
+
+  dimension: name {
+    type: string
+    sql: ${first_name} || ' ' ||  ${last_name};;
   }
 
   dimension: latitude {
@@ -109,8 +128,74 @@ dimension_group: created_at {
     sql: ${TABLE}.zip ;;
   }
 
+  measure: stuff {
+    type: count
+    drill_fields: [zip,state, stuff_2]
+  }
+
+  measure: stuff_2 {
+    type: count_distinct
+    drill_fields: [city,stuff]
+    sql: ${zip} ;;
+  }
+
   measure: count {
     type: count
+    drill_fields: [name, age, state, email]
+    link: {
+      label: "Drill to Users by State"
+      url: "{{ link }}&fields=users.count,users.state"
+    }
+    link: {
+      label: "Drill to Users by Country"
+      url: "{{ link }}&fields=users.count,users.country"
+    }
+    link: {
+      label: "Drill to Users by Country and Traffic Source"
+      url: "{{ link }}&fields=users.count,users.country,users.traffic_source&pivots=users.traffic_source"
+    }
+    link: {
+      label: "Drill to Users by Country and Traffic Source Stacked Bar"
+      url: "
+
+      {% assign vis= '{\"x_axis_gridlines\":false,
+        \"y_axis_gridlines\":true,
+        \"show_view_names\":false,
+        \"show_y_axis_labels\":true,
+        \"show_y_axis_ticks\":true,
+        \"y_axis_tick_density\":\"default\",
+        \"y_axis_tick_density_custom\":5,
+        \"show_x_axis_label\":true,
+        \"show_x_axis_ticks\":true,
+        \"y_axis_scale_mode\":\"linear\",
+        \"x_axis_reversed\":false,
+        \"y_axis_reversed\":false,
+        \"plot_size_by_field\":false,
+        \"trellis\":\"\",
+        \"stacking\":\"normal\",
+        \"limit_displayed_rows\":false,
+        \"legend_position\":\"center\",
+        \"point_style\":\"none\",
+        \"show_value_labels\":false,
+        \"label_density\":25,
+        \"x_axis_scale\":\"auto\",
+        \"y_axis_combined\":true,
+        \"ordering\":\"none\",
+        \"show_null_labels\":false,
+        \"show_totals_labels\":true,
+        \"show_silhouette\":false,
+        \"totals_color\":\"#000000\",
+        \"color_application\":{\"collection_id\":\"5591d8d1-6b49-4f8e-bafa-b874d82f8eb7\",
+        \"palette_id\":\"18d0c733-1d87-42a9-934f-4ba8ef81d736\",
+        \"options\":{\"steps\":5}},
+        \"series_types\":{},
+        \"series_colors\":{},
+        \"type\":\"looker_bar\",
+        \"defaults_version\":1}' %}
+
+
+      {{ link }}&fields=users.count,users.country,users.traffic_source&pivots=users.traffic_source&vis={{vis | encode_uri}}"
+    }
   }
 
 }

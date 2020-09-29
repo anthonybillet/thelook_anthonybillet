@@ -3,6 +3,10 @@ connection: "thelook_events"
 # include all the views
 include: "/**/**/*.view"
 include: "/*.dashboard"
+
+explore: users {}
+
+
 datagroup: the_look_anthonybillet_default_datagroup {
   sql_trigger: SELECT MAX(id) FROM etl_log;;
   max_cache_age: "1 hour"
@@ -15,16 +19,17 @@ datagroup: the_look_anthonybillet_4hr_cahce {
 
 persist_with: the_look_anthonybillet_default_datagroup
 
+# access_grant: banana {
+#   allowed_values: ["banana"]
+#   user_attribute: allowed_fruits
+# }
+
+
 explore: order_items {
   persist_with: the_look_anthonybillet_4hr_cahce
-  always_filter: {
-    filters: {
-      field: users.state
-      value: "California"
-    }
-  }
 
   join: users {
+#     required_access_grants: [banana]
     type: left_outer
     relationship: one_to_many
     sql_on: ${order_items.user_id} = ${users.id};;
