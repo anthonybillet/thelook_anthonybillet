@@ -1,3 +1,8 @@
+access_grant: can_see_country {
+  user_attribute: can_see_country
+  allowed_values: ["Yes"]
+}
+
 view: users {
   sql_table_name: public.users ;;
   drill_fields: [age,first_name,last_name,city,state,country,email,traffic_source]
@@ -61,6 +66,7 @@ view: users {
   dimension: country {
     type:  string
     sql: ${TABLE}.country ;;
+    required_access_grants: [can_see_country]
   }
 
 dimension_group: created_at {
