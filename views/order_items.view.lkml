@@ -1,3 +1,7 @@
+named_value_format: dynamic_money {
+  value_format: "[>=1000000]$0.00,,\"M\";[>=1000]$0.0,\"K\";$0.00"
+}
+
 view: order_items {
   sql_table_name: public.order_items ;;
   drill_fields: [created_date,delivered_date,shipped_date,returned_date,sale_price,status]
@@ -115,7 +119,7 @@ view: order_items {
     description: "Finds the cheapest purchase"
     type: min
     sql: ${sale_price} ;;
-    value_format: "[>=1000000]$0.00,,\"M\";[>=1000]$0.0,\"K\";$0.00"
+    value_format_name: dynamic_money
   }
 
   measure: most_expensive_sale {
@@ -123,7 +127,7 @@ view: order_items {
     description: "Finds the most expensive purchase"
     type: max
     sql: ${sale_price} ;;
-    value_format: "[>=1000000]$0.00,,\"M\";[>=1000]$0.0,\"K\";$0.00"
+    value_format_name: dynamic_money
   }
 
   measure: average_sale {
@@ -131,7 +135,7 @@ view: order_items {
     description: "The average dollar amount earned across all sales"
     type: average
     sql: ${sale_price} ;;
-    value_format: "[>=1000000]$0.00,,\"M\";[>=1000]$0.0,\"K\";$0.00"
+    value_format_name: dynamic_money
   }
 
   measure: total_revenue {
@@ -139,7 +143,7 @@ view: order_items {
     description: "Sums up every dollar earned from each sale"
     type: sum
     sql: ${sale_price} ;;
-    value_format: "[>=1000000]$0.00,,\"M\";[>=1000]$0.0,\"K\";$0.00"
+    value_format_name: dynamic_money
   }
 
   measure: total_profit {
@@ -147,6 +151,6 @@ view: order_items {
     description: "Calculates company profit as a function of total revenue less total cost"
     type: number
     sql: ${total_revenue} - ${inventory_items.total_cost} ;;
-    value_format: "[>=1000000]$0.00,,\"M\";[>=1000]$0.0,\"K\";$0.00"
+    value_format_name: dynamic_money
   }
 }
