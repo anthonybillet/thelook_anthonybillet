@@ -3,7 +3,7 @@ named_value_format: dynamic_money {
 }
 
 view: order_items {
-  sql_table_name: public.order_items ;;
+  sql_table_name: looker-private-demo.ecomm.order_items ;;
   drill_fields: [created_date,delivered_date,shipped_date,returned_date,sale_price,status]
 
   dimension: id {

@@ -1,4 +1,4 @@
-connection: "thelook_events"
+connection: "looker-private-demo"
 
 # include all the views
 include: "/**/**/*.view"
@@ -94,5 +94,3 @@ explore: inventory_items {
     sql_on: ${products.distribution_center_id} = ${distribution_centers.id} ;;
   }
 }
-
-explore: pit_stops  {}

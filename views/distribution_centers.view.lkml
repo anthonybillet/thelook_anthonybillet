@@ -1,5 +1,5 @@
 view: distribution_centers {
-  sql_table_name: public.distribution_centers ;;
+  sql_table_name: looker-private-demo.ecomm.distribution_centers ;;
   drill_fields: [name, latitude, latitude]
 
   dimension: id {

@@ -4,7 +4,7 @@ access_grant: can_see_country {
 }
 
 view: users {
-  sql_table_name: public.users ;;
+  sql_table_name: looker-private-demo.ecomm.users ;;
   drill_fields: [age,first_name,last_name,city,state,country,email,traffic_source]
 
   dimension: id {
@@ -121,7 +121,7 @@ dimension_group: created_at {
   dimension: state {
     type:  string
     sql: ${TABLE}.state ;;
-    suggest_dimension:suggest_states_USA.state
+    # suggest_dimension:suggest_states_USA.state
   }
 
   dimension: traffic_source {

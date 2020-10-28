@@ -1,5 +1,5 @@
 view: inventory_items {
-  sql_table_name: public.inventory_items ;;
+  sql_table_name: looker-private-demo.ecomm.inventory_items ;;
   drill_fields: [id,created_date,sold_date,cost]
 
   parameter: dynamic_operator {
