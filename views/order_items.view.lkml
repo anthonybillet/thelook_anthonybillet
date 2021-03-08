@@ -142,8 +142,16 @@ view: order_items {
     label: "Total Sales Revenue"
     description: "Sums up every dollar earned from each sale"
     type: sum
-    sql: ${sale_price} ;;
+    sql: ${sale_price};;
     value_format_name: dynamic_money
+  }
+
+  measure: test_missing_field {
+    label: "Total Custom Revenue"
+    description: "Shows custom message if null"
+    html:This doesn't work ;;
+    type: sum
+    sql: NULL;;
   }
 
   measure: total_profit {
