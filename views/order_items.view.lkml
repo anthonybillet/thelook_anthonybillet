@@ -149,7 +149,7 @@ view: order_items {
   measure: test_missing_field {
     label: "Total Custom Revenue"
     description: "Shows custom message if null"
-    html:This doesn't work ;;
+    html: Missing Data! ;;
     type: sum
     sql: NULL;;
   }
