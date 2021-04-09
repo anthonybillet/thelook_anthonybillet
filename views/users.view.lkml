@@ -162,11 +162,6 @@ dimension_group: created_at {
       {{ link }}&fields=users.count,users.country&vis_config={{ vis_config | encode_uri }}&toggle=dat,pik,vis&limit=5000"
     }
     link: {
-      label: "Drill to Users by Country (Pie Chart)"
-      url: "{% assign vis_config = '{\"type\": \"looker_pie\"}' %}
-      {{ link }}&fields=users.count,users.country&vis_config={{ vis_config | encode_uri }}&toggle=dat,pik,vis&limit=5000"
-    }
-    link: {
       label: "Drill to Users by Country and Traffic Source"
       url: "{{ link }}&fields=users.count,users.country,users.traffic_source&pivots=users.traffic_source"
     }
