@@ -157,11 +157,26 @@ dimension_group: created_at {
       url: "{{ link }}&fields=users.count,users.country"
     }
     link: {
+      label: "Drill to Users by Country (Pie Chart)"
+      url: "{% assign vis_config = '{\"type\": \"looker_pie\"}' %}
+      {{ link }}&fields=users.count,users.country&vis_config={{ vis_config | encode_uri }}&toggle=dat,pik,vis&limit=5000"
+    }
+    link: {
+      label: "Drill to Users by Country (Pie Chart)"
+      url: "{% assign vis_config = '{\"type\": \"looker_pie\"}' %}
+      {{ link }}&fields=users.count,users.country&vis_config={{ vis_config | encode_uri }}&toggle=dat,pik,vis&limit=5000"
+    }
+    link: {
       label: "Drill to Users by Country and Traffic Source"
       url: "{{ link }}&fields=users.count,users.country,users.traffic_source&pivots=users.traffic_source"
     }
     link: {
-      label: "Drill to Users by Country and Traffic Source Stacked Bar"
+      label: "Drill to Users by Country and Traffic Source (Grouped Bar Graph)"
+      url: "{% assign vis_config = '{\"type\": \"looker_bar\"}' %}
+      {{ link }}&fields=users.count,users.country,users.traffic_source&pivots=users.traffic_source&vis_config={{ vis_config | encode_uri }}&toggle=dat,pik,vis&limit=5000"
+    }
+    link: {
+      label: "Drill to Users by Country and Traffic Source (Stacked Bar Graph)"
       url: "
 
       {% assign vis= '{\"x_axis_gridlines\":false,
@@ -199,9 +214,9 @@ dimension_group: created_at {
         \"type\":\"looker_bar\",
         \"defaults_version\":1}' %}
 
-
-      {{ link }}&fields=users.count,users.country,users.traffic_source&pivots=users.traffic_source&vis={{vis | encode_uri}}"
+      {{ link }}&fields=users.count,users.country,users.traffic_source&pivots=users.traffic_source&vis_config={{ vis | encode_uri }}&toggle=dat,pik,vis&limit=5000"
     }
   }
+
 
 }
