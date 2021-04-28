@@ -7,6 +7,7 @@ application: ef_kt_hub_lab {
     local_storage: yes
     navigation: yes
     new_window: yes
+    use_embeds: yes
     core_api_methods: ["all_connections","search_folders", "run_inline_query", "me"]
   }
 }
