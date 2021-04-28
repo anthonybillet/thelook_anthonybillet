@@ -37,7 +37,7 @@ view: order_items {
       quarter,
       year
     ]
-    sql: ${TABLE}.delivered_at ;;
+    sql: CAST(${TABLE}.delivered_at AS timestamp) ;;
   }
 
   dimension: inventory_item_id {
@@ -66,6 +66,7 @@ view: order_items {
   }
 
   dimension: sale_price {
+    value_format_name: dynamic_money
     type: number
     sql: ${TABLE}.sale_price ;;
     drill_fields: [id, delivered_date, sale_price_tier]
@@ -95,7 +96,7 @@ view: order_items {
       quarter,
       year
     ]
-    sql: ${TABLE}.shipped_at ;;
+    sql: CAST(${TABLE}.shipped_at AS timestamp) ;;
   }
 
   dimension: status {
