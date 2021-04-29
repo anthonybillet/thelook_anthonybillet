@@ -6,7 +6,6 @@ include: "/*.dashboard"
 
 explore: users {}
 
-
 datagroup: the_look_anthonybillet_default_datagroup {
   sql_trigger: SELECT MAX(id) FROM etl_log;;
   max_cache_age: "1 hour"
@@ -23,7 +22,6 @@ persist_with: the_look_anthonybillet_default_datagroup
 #   allowed_values: ["banana"]
 #   user_attribute: allowed_fruits
 # }
-
 
 explore: order_items {
   # persist_with: the_look_anthonybillet_4hr_cahce

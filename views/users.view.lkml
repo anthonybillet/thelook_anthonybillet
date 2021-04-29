@@ -18,13 +18,13 @@ view: users {
     sql: 'Banana' ;;
   }
 
-  dimension: label_test {
-    label: "
-    {{ users.reference_field._value }}
-    "
-    type: string
-    sql: 'does not matter' ;;
-  }
+  # dimension: label_test {
+  #   label: "
+  #   {{ users.reference_field._value }}
+  #   "
+  #   type: string
+  #   sql: 'does not matter' ;;
+  # }
 
   dimension: age {
     type:  number
