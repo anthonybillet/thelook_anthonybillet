@@ -1,5 +1,5 @@
 include: "/views/**/*.view" # include all the views
-
+include: "/models/**.model"
 # Place in `thelook` model
 explore: +order_items {
   query: high_value_geos {
