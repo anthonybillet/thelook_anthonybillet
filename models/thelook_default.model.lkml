@@ -2,6 +2,7 @@ connection: "looker-private-demo"
 label: "eCommerce Anthony Billet"
 include: "queries*.view" # includes all queries refinements
 include: "/views/**/*.view" # include all the views
+include: "/*.dashboard"
 
 ############ Model Configuration #############
 
