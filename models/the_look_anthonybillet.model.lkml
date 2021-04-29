@@ -4,8 +4,6 @@ connection: "looker-private-demo"
 include: "/**/**/*.view"
 include: "/*.dashboard"
 
-explore: users {}
-
 datagroup: the_look_anthonybillet_default_datagroup {
   sql_trigger: SELECT MAX(id) FROM etl_log;;
   max_cache_age: "1 hour"
@@ -18,10 +16,8 @@ datagroup: the_look_anthonybillet_4hr_cahce {
 
 persist_with: the_look_anthonybillet_default_datagroup
 
-# access_grant: banana {
-#   allowed_values: ["banana"]
-#   user_attribute: allowed_fruits
-# }
+
+explore: users {}
 
 explore: order_items {
   # persist_with: the_look_anthonybillet_4hr_cahce
@@ -55,20 +51,6 @@ explore: order_items {
     relationship: many_to_one
     sql_on: ${order_items.sale_price} = ${products.retail_price} ;;
   }
-
-  join: suggest_states_USA {
-    sql_on: ${suggest_states_USA.state} = ${users.state} ;;
-    relationship: many_to_one
-    type: left_outer
-  }
-
-  join: user_facts {
-    sql_on: ${order_items.user_id} = ${user_facts.users_id} ;;
-    relationship: many_to_one
-    type: left_outer
-  }
-
-
 }
 
 explore: inventory_items {
@@ -92,3 +74,9 @@ explore: inventory_items {
     sql_on: ${products.distribution_center_id} = ${distribution_centers.id} ;;
   }
 }
+
+
+# access_grant: banana {
+#   allowed_values: ["banana"]
+#   user_attribute: allowed_fruits
+# }
