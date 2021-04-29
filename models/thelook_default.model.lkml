@@ -1,8 +1,7 @@
 connection: "looker-private-demo"
-label: " eCommerce"
+label: "eCommerce Anthony Billet"
 include: "queries*.view" # includes all queries refinements
 include: "/views/**/*.view" # include all the views
-include: "/dashboards/*.dashboard.lookml" # include all the views
 
 ############ Model Configuration #############
 
@@ -17,6 +16,11 @@ persist_with: ecommerce_etl
 explore: order_items {
   label: "(1) Orders, Items and Users"
   view_name: order_items
+
+  # access_filter: {
+  #   field: products.brand
+  #   user_attribute: brand
+  # }
 
   join: order_facts {
     type: left_outer

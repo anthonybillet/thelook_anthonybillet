@@ -53,8 +53,9 @@ view: products {
         name: "Body"
         type: textarea
         required: yes
+        # {{ ecomm_predict.centroid_label }}
         default:
-        "Dear {{ ecomm_predict.centroid_label }},
+        "Dear ,
 
         We appreciate your continue support and loyalty and wanted to show our appreciation. Offering a 15% discount on ALL products for our favorite brand {{ products.brand }}.
         Just used code {{ products.brand | upcase }}-MANIA on your next checkout!

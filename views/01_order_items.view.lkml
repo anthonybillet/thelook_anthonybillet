@@ -1,3 +1,7 @@
+named_value_format: dynamic_money {
+  value_format: "[>=1000000]$0.00,,\"M\";[>=1000]$0.0,\"K\";$0.00"
+}
+
 view: order_items {
   sql_table_name: looker-private-demo.ecomm.order_items ;;
 
@@ -447,5 +451,66 @@ view: order_items {
   }
   set: return_detail {
     fields: [id, order_id, status, created_date, returned_date, sale_price, products.brand, products.item_name, users.portrait, users.name, users.email]
+  }
+
+  dimension: sale_price_tier {
+    type: tier
+    tiers: [0, 10, 20, 50, 100]
+    style: relational
+    sql: ${TABLE}.sale_price;;
+    value_format_name: usd
+  }
+
+  dimension: luxury_item {
+    type: yesno
+    sql: ${sale_price} >= 100 ;;
+  }
+
+  measure: cheapest_sale {
+    label: "Lowest Value Sale"
+    description: "Finds the cheapest purchase"
+    type: min
+    sql: ${sale_price} ;;
+    value_format_name: dynamic_money
+  }
+
+  measure: most_expensive_sale {
+    label: "Highest Value Sale"
+    description: "Finds the most expensive purchase"
+    type: max
+    sql: ${sale_price} ;;
+    value_format_name: dynamic_money
+  }
+
+  measure: average_sale {
+    label: "Average Sale Value"
+    description: "The average dollar amount earned across all sales"
+    type: average
+    sql: ${sale_price} ;;
+    value_format_name: dynamic_money
+  }
+
+  measure: total_revenue {
+    label: "Total Sales Revenue"
+    description: "Sums up every dollar earned from each sale"
+    type: sum
+    sql: ${sale_price};;
+    value_format_name: dynamic_money
+  }
+
+  measure: test_missing_field {
+    label: "Total Custom Revenue"
+    description: "Shows custom message if null"
+    html: Missing Data! ;;
+    type: sum
+    sql: NULL;;
+  }
+
+  measure: total_profit {
+    label: "Total Ecommerce Profit"
+    description: "Calculates company profit as a function of total revenue less total cost"
+    type: number
+    sql: ${total_revenue} - ${inventory_items.total_cost} ;;
+    value_format_name: dynamic_money
   }
 }

@@ -30,7 +30,7 @@ view: inventory_items {
 
   dimension_group: sold {
     type: time
-    timeframes: [time, date, week, month, raw]
+    timeframes: [time, date, week, month,year, raw]
 #    sql: cast(CASE WHEN ${TABLE}.sold_at = "\\N" THEN NULL ELSE ${TABLE}.sold_at END as timestamp) ;;
     sql: ${TABLE}.sold_at ;;
   }
@@ -122,6 +122,21 @@ view: inventory_items {
     sql:  1.0 * ${number_on_hand} / nullif(${order_items.count_last_28d}*20.0,0) ;;
     value_format_name: decimal_2
     html: <p style="color: black; background-color: rgba({{ value | times: -100.0 | round | plus: 250 }},{{value | times: 100.0 | round | plus: 100}},100,80); font-size:100%; text-align:center">{{ rendered_value }}</p> ;;
+  }
+
+  measure: stock_tier{
+    description: "Gives a qualitative stock assessment, 'High' for over 10 units, 'Medium' for 5-10 units, 'Low' for under 5 units"
+    case: {
+      when: {
+        sql: ${count} < 5 ;;
+        label: "Low"
+      }
+      when: {
+        sql: ${count} >= 5 AND ${count} <= 10 ;;
+        label: "Medium"
+      }
+      else: "High"
+    }
   }
 
   set: detail {

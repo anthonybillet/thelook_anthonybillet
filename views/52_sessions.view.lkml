@@ -1,3 +1,4 @@
+# include: "/**/**/*.model"
 view: sessions {
   derived_table: {
     datagroup_trigger: ecommerce_etl
