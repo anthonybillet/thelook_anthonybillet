@@ -36,33 +36,33 @@ view: products {
       icon_url: "http://www.looker.com/favicon.ico"
     }
 
-    action: {
-      label: "Email Brand Promotion to Cohort"
-      url: "https://desolate-refuge-53336.herokuapp.com/posts"
-      icon_url: "https://sendgrid.com/favicon.ico"
-      param: {
-        name: "some_auth_code"
-        value: "abc123456"
-      }
-      form_param: {
-        name: "Subject"
-        required: yes
-        default: "Last Chance! 20% off {{ value }}"
-      }
-      form_param: {
-        name: "Body"
-        type: textarea
-        required: yes
-        # {{ ecomm_predict.centroid_label }}
-        default:
-        "Dear ,
+    # action: {
+    #   label: "Email Brand Promotion to Cohort"
+    #   url: "https://desolate-refuge-53336.herokuapp.com/posts"
+    #   icon_url: "https://sendgrid.com/favicon.ico"
+    #   param: {
+    #     name: "some_auth_code"
+    #     value: "abc123456"
+    #   }
+    #   form_param: {
+    #     name: "Subject"
+    #     required: yes
+    #     default: "Last Chance! 20% off {{ value }}"
+    #   }
+    #   form_param: {
+    #     name: "Body"
+    #     type: textarea
+    #     required: yes
+    #     # {{ ecomm_predict.centroid_label }}
+    #     default:
+    #     "Dear ,
 
-        We appreciate your continue support and loyalty and wanted to show our appreciation. Offering a 15% discount on ALL products for our favorite brand {{ products.brand }}.
-        Just used code {{ products.brand | upcase }}-MANIA on your next checkout!
+    #     We appreciate your continue support and loyalty and wanted to show our appreciation. Offering a 15% discount on ALL products for our favorite brand {{ products.brand }}.
+    #     Just used code {{ products.brand | upcase }}-MANIA on your next checkout!
 
-        Your friends at the Look"
-      }
-    }
+    #     Your friends at the Look"
+    #   }
+    # }
     action: {
       label: "Start Adwords Campaign"
       url: "https://desolate-refuge-53336.herokuapp.com/posts"

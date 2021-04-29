@@ -4,10 +4,10 @@
   preferred_viewer: dashboards-next
   description: ''
   query_timezone: user_timezone
-  embed_style:
-    # tile_separator_color: "#bdb7b7"
-    # tile_border_radius: 2
-    # show_tile_shadow: false
+  # embed_style:
+  #   tile_separator_color: "#bdb7b7"
+  #   tile_border_radius: 2
+  #   show_tile_shadow: false
   elements:
   - title: Number of First Purchasers
     name: Number of First Purchasers
