@@ -63,49 +63,49 @@ view: products {
     #     Your friends at the Look"
     #   }
     # }
-    action: {
-      label: "Start Adwords Campaign"
-      url: "https://desolate-refuge-53336.herokuapp.com/posts"
-      icon_url: "https://www.google.com/s2/favicons?domain=www.adwords.google.com"
-      param: {
-        name: "some_auth_code"
-        value: "abc123456"
-      }
-      form_param: {
-        type: select
-        name: "Campaign Type"
-        option: { name: "Spend" label: "Spend" }
-        option: { name: "Leads" label: "Leads" }
-        option: { name: "Website Traffic" label: "Website Traffic" }
-        required: yes
-      }
-      form_param: {
-        name: "Campaign Name"
-        type: string
-        required: yes
-        default: "{{ products.brand }} Campaign"
-      }
+  #   action: {
+  #     label: "Start Adwords Campaign"
+  #     url: "https://desolate-refuge-53336.herokuapp.com/posts"
+  #     icon_url: "https://www.google.com/s2/favicons?domain=www.adwords.google.com"
+  #     param: {
+  #       name: "some_auth_code"
+  #       value: "abc123456"
+  #     }
+  #     form_param: {
+  #       type: select
+  #       name: "Campaign Type"
+  #       option: { name: "Spend" label: "Spend" }
+  #       option: { name: "Leads" label: "Leads" }
+  #       option: { name: "Website Traffic" label: "Website Traffic" }
+  #       required: yes
+  #     }
+  #     form_param: {
+  #       name: "Campaign Name"
+  #       type: string
+  #       required: yes
+  #       default: "{{ products.brand._value }} Campaign"
+  #     }
 
-      form_param: {
-        name: "Product Category"
-        type: string
-        required: yes
-        default: "{{ products.category }}"
-      }
+  #     form_param: {
+  #       name: "Product Category"
+  #       type: string
+  #       required: yes
+  #       default: "{{ products.category }}"
+  #     }
 
-      form_param: {
-        name: "Budget"
-        type: string
-        required: yes
-      }
+  #     form_param: {
+  #       name: "Budget"
+  #       type: string
+  #       required: yes
+  #     }
 
-      form_param: {
-        name: "Keywords"
-        type: string
-        required: yes
-        default: "{{ products.brand }}"
-      }
-    }
+  #     form_param: {
+  #       name: "Keywords"
+  #       type: string
+  #       required: yes
+  #       default: "{{ products.brand }}"
+  #     }
+  # }
 
 
     drill_fields: [category, item_name]
